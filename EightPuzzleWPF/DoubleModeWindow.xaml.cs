@@ -16,16 +16,18 @@ using System.Windows.Shapes;
 namespace EightPuzzleWPF
 {
     /// <summary>
-    /// MainWindow.xaml에 대한 상호 작용 논리
+    /// DoubleModeWindow.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class DoubleModeWindow : Page
     {
-        public MainWindow()
+        public DoubleModeWindow()
         {
             InitializeComponent();
-
-            Board board = new Board(3, 3);
         }
-        
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
