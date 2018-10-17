@@ -34,6 +34,8 @@ namespace EightPuzzleWPF
 
             return;
         }
+
+        //public moveTile()
     }
 
     

@@ -26,6 +26,13 @@ namespace EightPuzzleWPF
 
             Board board = new Board(3, 3);
         }
-        
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Up)
+            {
+
+            }
+        }
     }
 }
