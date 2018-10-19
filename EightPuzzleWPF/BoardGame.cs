@@ -17,10 +17,10 @@ namespace EightPuzzleWPF
         public void ResetTiles()
         {
             int num = 1;
-            int rowSize = _status.Count();
-            int colSize = _status[0].Count();
+            int rowSize = Status.Count;
+            int colSize = Status[0].Count;
 
-            foreach (var i in _status)
+            foreach (var i in Status)
             {
                 for (int j = 0; j < colSize; j++)
                 {
@@ -29,7 +29,7 @@ namespace EightPuzzleWPF
                 }
             }
 
-            _status[rowSize - 1][colSize - 1] = 0;
+            Status[rowSize - 1][colSize - 1] = 0;
             HoleRow = rowSize - 1;
             HoleCol = colSize - 1;
 
@@ -42,10 +42,10 @@ namespace EightPuzzleWPF
             switch (dir)
             {
                 case Key.Up:
-                    if (HoleRow < _status[0].Count)
+                    if (HoleRow < Status[0].Count)
                     {
-                        _status[HoleRow][HoleCol] = _status[HoleRow + 1][HoleCol];
-                        _status[HoleRow + 1][HoleCol] = 0;
+                        Status[HoleRow][HoleCol] = Status[HoleRow + 1][HoleCol];
+                        Status[HoleRow + 1][HoleCol] = 0;
                         HoleRow++;
                         return true;
                     }
@@ -53,10 +53,10 @@ namespace EightPuzzleWPF
                         return false;
 
                 case Key.Down:
-                    if (HoleRow < _status[0].Count)
+                    if (HoleRow < Status[0].Count)
                     {
-                        _status[HoleRow][HoleCol] = _status[HoleRow + 1][HoleCol];
-                        _status[HoleRow + 1][HoleCol] = 0;
+                        Status[HoleRow][HoleCol] = Status[HoleRow + 1][HoleCol];
+                        Status[HoleRow + 1][HoleCol] = 0;
                         HoleRow++;
                         return true;
                     }
@@ -64,10 +64,10 @@ namespace EightPuzzleWPF
                         return false;
 
                 case Key.Left:
-                    if (HoleRow < _status[0].Count)
+                    if (HoleRow < Status[0].Count)
                     {
-                        _status[HoleRow][HoleCol] = _status[HoleRow + 1][HoleCol];
-                        _status[HoleRow + 1][HoleCol] = 0;
+                        Status[HoleRow][HoleCol] = Status[HoleRow + 1][HoleCol];
+                        Status[HoleRow + 1][HoleCol] = 0;
                         HoleRow++;
                         return true;
                     }
@@ -75,10 +75,10 @@ namespace EightPuzzleWPF
                         return false;
 
                 case Key.Right:
-                    if (HoleRow < _status[0].Count)
+                    if (HoleRow < Status[0].Count)
                     {
-                        _status[HoleRow][HoleCol] = _status[HoleRow + 1][HoleCol];
-                        _status[HoleRow + 1][HoleCol] = 0;
+                        Status[HoleRow][HoleCol] = Status[HoleRow + 1][HoleCol];
+                        Status[HoleRow + 1][HoleCol] = 0;
                         HoleRow++;
                         return true;
                     }
@@ -89,6 +89,11 @@ namespace EightPuzzleWPF
                     return false;
 
             }
+        }
+
+        public void MoveTileWithMouse()
+        {
+
         }
 
         public void MoveOnceRandom()
@@ -111,6 +116,11 @@ namespace EightPuzzleWPF
             {
                 MoveOnceRandom();
             }
+        }
+
+        public void Solve()
+        {
+
         }
     }
 

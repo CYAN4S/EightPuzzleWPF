@@ -10,30 +10,30 @@ namespace EightPuzzleWPF
     {
         public int HoleRow { get; set; }
         public int HoleCol { get; set; }
-        public List<List<int>> _status;
+        public List<List<int>> Status { get; set; }
 
         public Board(int row, int col)
         {
             HoleRow = row - 1;
             HoleCol = col - 1;
-            _status = new List<List<int>>();
+            Status = new List<List<int>>();
 
             for (int i = 0; i < row; i++)
             {
-                _status.Add(new List<int>());
+                Status.Add(new List<int>());
                 for (int j = 0; j < col; j++)
                 {
-                    _status[i].Add(i * col + j + 1);
+                    Status[i].Add(i * col + j + 1);
                 }
             }
 
-            _status[HoleRow][HoleCol] = 0;
+            Status[HoleRow][HoleCol] = 0;
         }
 
         public int CheckWrongTiles()
         {
             int num = 1, wrong = 0;
-            foreach (var i in _status)
+            foreach (var i in Status)
             {
                 foreach (int j in i)
                 {
