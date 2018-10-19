@@ -42,7 +42,7 @@ namespace EightPuzzleWPF
             switch (dir)
             {
                 case Key.Up:
-                    if (HoleRow < Status[0].Count)
+                    if (HoleRow < Status.Count - 1)
                     {
                         Status[HoleRow][HoleCol] = Status[HoleRow + 1][HoleCol];
                         Status[HoleRow + 1][HoleCol] = 0;
@@ -53,33 +53,33 @@ namespace EightPuzzleWPF
                         return false;
 
                 case Key.Down:
-                    if (HoleRow < Status[0].Count)
+                    if (HoleRow > 0)
                     {
-                        Status[HoleRow][HoleCol] = Status[HoleRow + 1][HoleCol];
-                        Status[HoleRow + 1][HoleCol] = 0;
-                        HoleRow++;
+                        Status[HoleRow][HoleCol] = Status[HoleRow - 1][HoleCol];
+                        Status[HoleRow - 1][HoleCol] = 0;
+                        HoleRow--;
                         return true;
                     }
                     else
                         return false;
 
                 case Key.Left:
-                    if (HoleRow < Status[0].Count)
+                    if (HoleCol < Status[0].Count - 1)
                     {
-                        Status[HoleRow][HoleCol] = Status[HoleRow + 1][HoleCol];
-                        Status[HoleRow + 1][HoleCol] = 0;
-                        HoleRow++;
+                        Status[HoleRow][HoleCol] = Status[HoleRow][HoleCol + 1];
+                        Status[HoleRow][HoleCol + 1] = 0;
+                        HoleCol++;
                         return true;
                     }
                     else
                         return false;
 
                 case Key.Right:
-                    if (HoleRow < Status[0].Count)
+                    if (HoleCol > 0)
                     {
-                        Status[HoleRow][HoleCol] = Status[HoleRow + 1][HoleCol];
-                        Status[HoleRow + 1][HoleCol] = 0;
-                        HoleRow++;
+                        Status[HoleRow][HoleCol] = Status[HoleRow][HoleCol - 1];
+                        Status[HoleRow][HoleCol - 1] = 0;
+                        HoleCol--;
                         return true;
                     }
                     else
@@ -100,9 +100,11 @@ namespace EightPuzzleWPF
         {
             Random random = new Random();
             List<Key> list = new List<Key> { Key.Up, Key.Down, Key.Left, Key.Right };
-            for (int i = 4; true; i--)
+            for (int i = 4; i > 0; i--)
             {
-                Key dir = list[random.Next(0, i)];
+                int ran = random.Next(0, i);
+                Key dir = list[ran];
+                list.RemoveAt(ran);
                 if (MoveTile(dir) == true)
                 {
                     return;
@@ -110,13 +112,13 @@ namespace EightPuzzleWPF
             }
         }
 
-        public void ShuffleTiles()
-        {
-            for (int i = 0; i < 100; i++)
-            {
-                MoveOnceRandom();
-            }
-        }
+        //public void ShuffleTiles()
+        //{
+        //    for (int i = 0; i < 10000; i++)
+        //    {
+        //        MoveOnceRandom();
+        //    }
+        //}
 
         public void Solve()
         {

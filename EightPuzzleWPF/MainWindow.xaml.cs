@@ -95,14 +95,24 @@ namespace EightPuzzleWPF
         {
             int rowSize = boardGame.Status.Count;
             int colSize = boardGame.Status[0].Count;
-            
-
+            for (int i = 0; i < rowSize; i++)
+            {
+                for (int j = 0; j < colSize; j++)
+                {
+                    buttons[i][j].Content = boardGame.Status[i][j].ToString();
+                    buttons[i][j].Visibility = Visibility.Visible;
+                }
+            }
+            buttons[boardGame.HoleRow][boardGame.HoleCol].Visibility = Visibility.Hidden;
 
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            boardGame.MoveTile(e.Key);
+            if (boardGame.MoveTile(e.Key))
+            {
+                ShowBoard();
+            }
 
             //if (e.Key == Key.Up)
             //{
@@ -113,12 +123,34 @@ namespace EightPuzzleWPF
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var tag = (int)((Button)sender).Tag;
-            buttons[0][0].Content = tag.ToString();
+            //buttons[0][0].Content = tag.ToString();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            boardGame.ShuffleTiles();
+            for (int i = 0; i < 500; i++)
+            {
+                boardGame.MoveOnceRandom();
+                ShowBoard();
+                Delay(5);
+            }
+            
         }
+
+        private static DateTime Delay(int MS)
+        {
+            DateTime ThisMoment = DateTime.Now;
+            TimeSpan duration = new TimeSpan(0, 0, 0, 0, MS);
+            DateTime AfterWards = ThisMoment.Add(duration);
+
+            while (AfterWards >= ThisMoment)
+            {
+                System.Windows.Forms.Application.DoEvents();
+                ThisMoment = DateTime.Now;
+            }
+            return DateTime.Now;
+
+        }
+        
     }
 }
