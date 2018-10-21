@@ -32,7 +32,7 @@ namespace EightPuzzleWPF
             InitBoard();
             // ShowBoard(boardGame);
 
-            ResizeBoard(4, 4);
+            ResizeBoard(3, 3);
         }
 
         private void ResizeBoard(int r, int c)
@@ -70,11 +70,11 @@ namespace EightPuzzleWPF
                     Button btn = new Button
                     {
                         Content = boardGame.Status[i][j].ToString(),
-                        FontSize = 48,
+                        FontSize = 40,
                         FontFamily = new FontFamily("Roboto Mono Light"),
                         Foreground = Brushes.Gray,
                         Background = Brushes.White,
-                        BorderBrush = Brushes.White,
+                        BorderThickness = new Thickness(0),
                         Tag = i * colSize + j
                     };
                     btn.Click += Button_Click;
@@ -124,15 +124,25 @@ namespace EightPuzzleWPF
         {
             var tag = (int)((Button)sender).Tag;
             //buttons[0][0].Content = tag.ToString();
+            boardGame.MoveTileWithMouse(tag);
+            ShowBoard();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            for (int i = 0; i < 500; i++)
+            if (boardGame.IsSolved())
             {
-                boardGame.MoveOnceRandom();
+                for (int i = 0; i < 250; i++)
+                {
+                    boardGame.MoveOnceRandom();
+                    ShowBoard();
+                    Delay(3);
+                }
+            }
+            else
+            {
+                boardGame.ResetTiles();
                 ShowBoard();
-                Delay(5);
             }
             
         }

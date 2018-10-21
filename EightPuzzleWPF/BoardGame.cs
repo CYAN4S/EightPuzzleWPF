@@ -91,9 +91,39 @@ namespace EightPuzzleWPF
             }
         }
 
-        public void MoveTileWithMouse()
+        public void MoveTileWithMouse(int tag)
         {
+            // int rowSize = Status.Count;
+            int colSize = Status[0].Count;
+            int buttonRow = tag / colSize;
+            int buttonCol = tag % colSize;
 
+            if (buttonRow == HoleRow)
+            {
+                if (buttonCol > HoleCol)
+                {
+                    for (int i = buttonCol - HoleCol; i > 0; i--)
+                        MoveTile(Key.Left);
+                }
+                else // if (buttonCol < HoleCol)
+                {
+                    for (int i = HoleCol - buttonCol; i > 0; i--)
+                        MoveTile(Key.Right);
+                }
+            }
+            else if (buttonCol == HoleCol)
+            {
+                if (buttonRow > HoleRow)
+                {
+                    for (int i = buttonRow - HoleRow; i > 0; i--)
+                        MoveTile(Key.Up);
+                }
+                else // if (buttonRow < HoleRow)
+                {
+                    for (int i = HoleRow - buttonRow; i > 0; i--)
+                        MoveTile(Key.Down);
+                }
+            }
         }
 
         public void MoveOnceRandom()

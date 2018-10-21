@@ -18,12 +18,13 @@ namespace EightPuzzleWPF
             HoleCol = col - 1;
             Status = new List<List<int>>();
 
+            int num = 1;
             for (int i = 0; i < row; i++)
             {
                 Status.Add(new List<int>());
                 for (int j = 0; j < col; j++)
                 {
-                    Status[i].Add(i * col + j + 1);
+                    Status[i].Add(num++);
                 }
             }
 
@@ -32,11 +33,12 @@ namespace EightPuzzleWPF
 
         public int CheckWrongTiles()
         {
-            int num = 1, wrong = 0;
+            int num = 0, wrong = 0;
             foreach (var i in Status)
             {
                 foreach (int j in i)
                 {
+                    num++;
                     if (j == 0)
                     {
                         continue;
@@ -45,10 +47,30 @@ namespace EightPuzzleWPF
                     {
                         wrong++;
                     }
-                    num++;
                 }
             }
             return wrong;
+        }
+
+        public bool IsSolved()
+        {
+            int num = 0;
+            foreach (var i in Status)
+            {
+                foreach (int j in i)
+                {
+                    num++;
+                    if (j == 0)
+                    {
+                        continue;
+                    }
+                    else if (j != num)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
     }
 
