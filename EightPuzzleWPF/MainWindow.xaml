@@ -75,7 +75,7 @@
         <RichTextBox Margin="24,30,10,0" Grid.Row="1" BorderBrush="{x:Null}" x:Name="RichTextLeft_Copy" FontFamily="Roboto Mono Light" FontSize="30" BorderThickness="0">
             <FlowDocument>
                 <Paragraph>
-                    <Run Foreground="Gray" FontWeight="Bold" Text="00:00"/>
+                    <Run Foreground="Gray" Text="00:00"/>
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
@@ -83,14 +83,14 @@
         <RichTextBox Margin="10,10,24,0" Grid.Row="1" BorderBrush="{x:Null}" x:Name="RichTextLeft_Copy1" Height="20" VerticalAlignment="Top" BorderThickness="0" Grid.Column="1">
             <FlowDocument>
                 <Paragraph>
-                    <Run Text="TIMER" FontSize="16" FontWeight="Bold" Foreground="Gray" FontFamily="Roboto"/>
+                    <Run Text="MOVED TIME" FontSize="16" FontWeight="Bold" Foreground="Gray" FontFamily="Roboto"/>
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <RichTextBox Margin="10,30,24,0" Grid.Row="1" BorderBrush="{x:Null}" x:Name="RichTextLeft_Copy2" FontFamily="Roboto Mono Light" FontSize="30" BorderThickness="0" Grid.Column="1">
+        <RichTextBox Margin="10,30,24,0" Grid.Row="1" BorderBrush="{x:Null}" x:Name="RichTextLeft_Copy2" FontFamily="Roboto Mono Medium" FontSize="30" BorderThickness="0" Grid.Column="1">
             <FlowDocument>
                 <Paragraph>
-                    <Run Foreground="Gray" FontWeight="Bold" Text="00:00"/>
+                    <Run Foreground="Gray" Text="0"/>
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>

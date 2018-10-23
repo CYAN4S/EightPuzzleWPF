@@ -150,9 +150,33 @@ namespace EightPuzzleWPF
         //    }
         //}
 
-        public void Solve()
+        public List<Key> Solve()
         {
+            PriorityQueue4AStar pq = new PriorityQueue4AStar();
+            BoardNode answer = pq.Find(this);
+            //foreach (var i in answer.path)
+            //{
+            //    MoveTile(i);
+            //}
+            return answer.path;
+        }
 
+        // 동적 할당을 해줍니다.
+        public BoardGame DeepCopy()
+        {
+            BoardGame newBoardGame = new BoardGame(Status.Count, Status[0].Count)
+            {
+                HoleRow = HoleRow,
+                HoleCol = HoleCol
+            };
+            for (int i = 0; i < Status.Count; i++)
+            {
+                for (int j = 0; j < Status[0].Count; j++)
+                {
+                    newBoardGame.Status[i][j] = Status[i][j];
+                }
+            }
+            return newBoardGame;
         }
     }
 

@@ -72,6 +72,8 @@ namespace EightPuzzleWPF
             }
             return true;
         }
+
+        
     }
 
 

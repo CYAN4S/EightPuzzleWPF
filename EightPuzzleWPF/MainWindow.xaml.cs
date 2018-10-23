@@ -141,7 +141,14 @@ namespace EightPuzzleWPF
             }
             else
             {
-                boardGame.ResetTiles();
+                // boardGame.ResetTiles();
+                List<Key> paths = boardGame.Solve();
+                foreach (var i in paths)
+                {
+                    boardGame.MoveTile(i);
+                    ShowBoard();
+                    Delay(100);
+                }
                 ShowBoard();
             }
             
