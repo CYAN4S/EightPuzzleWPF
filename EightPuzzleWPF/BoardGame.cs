@@ -35,8 +35,7 @@ namespace EightPuzzleWPF
 
             return;
         }
-
-
+        
         public bool MoveTile(Key dir)
         {
             switch (dir)
@@ -142,27 +141,15 @@ namespace EightPuzzleWPF
             }
         }
 
-        //public void ShuffleTiles()
-        //{
-        //    for (int i = 0; i < 10000; i++)
-        //    {
-        //        MoveOnceRandom();
-        //    }
-        //}
-
         public List<Key> Solve()
         {
             PriorityQueue4AStar pq = new PriorityQueue4AStar();
             BoardNode answer = pq.Find(this);
-            //foreach (var i in answer.path)
-            //{
-            //    MoveTile(i);
-            //}
             return answer.path;
         }
 
         // 동적 할당을 해줍니다.
-        public BoardGame DeepCopy()
+        public new BoardGame DeepCopy()
         {
             BoardGame newBoardGame = new BoardGame(Status.Count, Status[0].Count)
             {
