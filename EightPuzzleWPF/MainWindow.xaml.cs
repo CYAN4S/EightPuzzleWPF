@@ -26,7 +26,8 @@ namespace EightPuzzleWPF
         List<List<Button>> buttons;
         Stopwatch stopwatch  = new Stopwatch();
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
-        string currentTime = string.Empty;
+        string minsec = string.Empty;
+
 
         public MainWindow()
         {
@@ -37,7 +38,19 @@ namespace EightPuzzleWPF
             // ShowBoard(boardGame);
             ResizeBoard(3, 3);
 
-            
+            dispatcherTimer.Tick += DispatcherTimer_Tick;
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
+        }
+
+        private void DispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            if (stopwatch.IsRunning)
+            {
+                TimeSpan timeSpan = stopwatch.Elapsed;
+                minsec = String.Format("{0:00}:{1:00}", timeSpan.Minutes, timeSpan.Seconds);
+
+            }
+            throw new NotImplementedException();
         }
 
         private void ResizeBoard(int r, int c)
