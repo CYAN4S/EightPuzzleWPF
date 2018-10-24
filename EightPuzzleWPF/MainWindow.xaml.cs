@@ -50,16 +50,16 @@ namespace EightPuzzleWPF
             InitBoard();
         }
 
-        void dt_Tick(object sender, EventArgs e)
-        {
-            if (stopwatch.IsRunning)
-            {
-                TimeSpan ts = sw.Elapsed;
-                currentTime = String.Format("{0:00}:{1:00}:{2:00}",
-                ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
-                clocktxt.Text = currentTime;
-            }
-        }
+        //void dt_Tick(object sender, EventArgs e)
+        //{
+        //    if (stopwatch.IsRunning)
+        //    {
+        //        TimeSpan ts = sw.Elapsed;
+        //        currentTime = String.Format("{0:00}:{1:00}:{2:00}",
+        //        ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+        //        clocktxt.Text = currentTime;
+        //    }
+        //}
 
         // 처음 생성, 판 크기 변경 시
         private void InitBoard()

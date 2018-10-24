@@ -9,13 +9,13 @@ namespace EightPuzzleWPF
 {
     struct BoardNode
     {
-        public BoardGame boardGame;
+        public Board board;
         public List<Key> path;
         public int heur;
 
-        public BoardNode(BoardGame boardGame, List<Key> path, int heur)
+        public BoardNode(Board board, List<Key> path, int heur)
         {
-            this.boardGame = boardGame;
+            this.board = board;
             this.path = path;
             this.heur = heur;
         }
@@ -25,7 +25,7 @@ namespace EightPuzzleWPF
         {
             BoardNode result = new BoardNode
             {
-                boardGame = this.boardGame.DeepCopy(),
+                board = this.board.DeepCopy(),
                 path = new List<Key>(path),
                 heur = this.heur
             };
@@ -83,23 +83,7 @@ namespace EightPuzzleWPF
             Tree[1] = Tree[size - 1];
             Tree.RemoveAt(size - 1);
             size--;
-
-
-            //for (int i = 1; i * 2 < size - 1;)
-            //{
-            //    // 자식 노드 2개 중, 우선순위가 낮은 노드 선택
-            //    // 순위가 같을 시, 왼쪽 노드 우선
-            //    int smaller = (Tree[i * 2].heur > Tree[i * 2 + 1].heur) ? (i * 2 + 1) : (i * 2);
-            //    BoardNode smallerNode = Tree[smaller];
-
-            //    // 부모 노드의 순위가 낮아야 함
-            //    // 순위가 같을 경우, Swap이 우선
-            //    if (Tree[i].heur >= Tree[smaller].heur)
-            //    {
-            //        Swap(Tree, i, smaller);
-            //    }
-            //    i = smaller;
-            //}
+            
 
             int index = 1;
             while (true)
@@ -149,6 +133,7 @@ namespace EightPuzzleWPF
         {
             BoardNode answer;
             List<Key> keys = new List<Key> { Key.Up, Key.Down, Key.Left, Key.Right };
+            List<Key> reverse = new List<Key> { Key.Down, Key.Up, Key.Right, Key.Left };
 
             BoardNode first = new BoardNode(game, new List<Key>(), game.CheckWrongTiles());
             Enqueue(first);
@@ -156,29 +141,29 @@ namespace EightPuzzleWPF
             while (Tree.Count > 1)
             {
                 BoardNode pop = Dequeue();
-                if (pop.boardGame.IsSolved())
+                if (pop.board.IsSolved())
                 {
                     answer = pop.Copy();
                     return answer;
                 }
 
-                foreach (var i in keys)
+                for (int i = 0; i < 4; i++)
                 {
-                    BoardNode moved = pop.Copy();
-                    //if (moved.path.Count != 0)
-                    //{
-                        
-                    //    if (moved.path[moved.path.Count - 1] == i)
-                    //        continue;
-                    //}
-                    
-                    if (moved.boardGame.MoveTile(i) == true)
+                    if (pop.path.Count > 0)
                     {
-                        moved.path.Add(i);
-                        moved.heur = moved.path.Count + moved.boardGame.CheckWrongTiles();
+                        if (pop.path[pop.path.Count - 1] == reverse[i])
+                            continue;
+                    }
+                    if (pop.board.IsMovable(keys[i]) == true)
+                    {
+                        BoardNode moved = pop.Copy();
+                        moved.board.MoveTileOnly(keys[i]);
+                        moved.path.Add(keys[i]);
+                        moved.heur = moved.path.Count + moved.board.CheckWrongTiles();
                         Enqueue(moved);
                     }
                 }
+                
             }
             return new BoardNode(null, null, -1);
         }
