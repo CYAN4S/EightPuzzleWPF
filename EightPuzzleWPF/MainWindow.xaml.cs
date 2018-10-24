@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics;
+using System.Windows.Threading;
 
 namespace EightPuzzleWPF
 {
@@ -22,17 +24,20 @@ namespace EightPuzzleWPF
     {
         BoardGame boardGame;
         List<List<Button>> buttons;
+        Stopwatch stopwatch  = new Stopwatch();
+        DispatcherTimer dispatcherTimer = new DispatcherTimer();
+        string currentTime = string.Empty;
 
         public MainWindow()
         {
             InitializeComponent();
 
             boardGame = new BoardGame(3, 3);
-
             InitBoard();
             // ShowBoard(boardGame);
-
             ResizeBoard(3, 3);
+
+            
         }
 
         private void ResizeBoard(int r, int c)
@@ -45,6 +50,17 @@ namespace EightPuzzleWPF
             InitBoard();
         }
 
+        void dt_Tick(object sender, EventArgs e)
+        {
+            if (stopwatch.IsRunning)
+            {
+                TimeSpan ts = sw.Elapsed;
+                currentTime = String.Format("{0:00}:{1:00}:{2:00}",
+                ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+                clocktxt.Text = currentTime;
+            }
+        }
+
         // 처음 생성, 판 크기 변경 시
         private void InitBoard()
         {
@@ -53,14 +69,10 @@ namespace EightPuzzleWPF
             buttons = new List<List<Button>>();
 
             for (int i = 0; i < rowSize; i++)
-            {
                 BoardSpace.RowDefinitions.Add(new RowDefinition());
-            }
 
             for (int i = 0; i < colSize; i++)
-            {
                 BoardSpace.ColumnDefinitions.Add(new ColumnDefinition());
-            }
 
             for (int i = 0; i < rowSize; i++)
             {
@@ -86,9 +98,7 @@ namespace EightPuzzleWPF
                     buttons[i].Add(btn);
                 }
             }
-
             buttons[boardGame.HoleRow][boardGame.HoleCol].Visibility = Visibility.Hidden;
-
         }
 
         private void ShowBoard()
@@ -110,14 +120,7 @@ namespace EightPuzzleWPF
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (boardGame.MoveTile(e.Key))
-            {
                 ShowBoard();
-            }
-
-            //if (e.Key == Key.Up)
-            //{
-
-            //}
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -125,7 +128,12 @@ namespace EightPuzzleWPF
             var tag = (int)((Button)sender).Tag;
             //buttons[0][0].Content = tag.ToString();
             boardGame.MoveTileWithMouse(tag);
+            if (boardGame.IsSolved() && stopwatch.IsRunning)
+            {
+                stopwatch.Stop();
+            }
             ShowBoard();
+            
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -138,6 +146,8 @@ namespace EightPuzzleWPF
                     ShowBoard();
                     Delay(3);
                 }
+
+                stopwatch.Start();
             }
             else
             {

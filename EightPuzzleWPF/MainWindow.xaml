@@ -95,5 +95,12 @@
             </FlowDocument>
         </RichTextBox>
         <Rectangle Fill="White" Margin="10,0,24,0" Grid.Row="1" Height="10" VerticalAlignment="Top" Grid.Column="1"/>
+        <RichTextBox Margin="116,41,10,0" Grid.Row="1" BorderBrush="{x:Null}" x:Name="RichTextLeft_Copy3" FontFamily="Roboto Mono" FontSize="20" BorderThickness="0" Background="{x:Null}">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Foreground="Gray" Text="000"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
     </Grid>
 </Window>
