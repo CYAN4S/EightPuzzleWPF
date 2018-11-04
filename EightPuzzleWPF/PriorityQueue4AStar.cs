@@ -25,9 +25,9 @@ namespace EightPuzzleWPF
         {
             BoardNode result = new BoardNode
             {
-                board = this.board.DeepCopy(),
+                board = Board.DeepCopy(board),
                 path = new List<Key>(path),
-                heur = this.heur
+                heur = heur
             };
             return result;
         }
@@ -135,13 +135,13 @@ namespace EightPuzzleWPF
             List<Key> keys = new List<Key> { Key.Up, Key.Down, Key.Left, Key.Right };
             List<Key> reverse = new List<Key> { Key.Down, Key.Up, Key.Right, Key.Left };
 
-            BoardNode first = new BoardNode(game, new List<Key>(), game.CheckWrongTiles());
+            BoardNode first = new BoardNode(game, new List<Key>(), Board.CheckWrongTiles(game));
             Enqueue(first);
 
             while (Tree.Count > 1)
             {
                 BoardNode pop = Dequeue();
-                if (pop.board.IsSolved())
+                if (Board.IsSolved(pop.board))
                 {
                     answer = pop.Copy();
                     return answer;
@@ -154,12 +154,12 @@ namespace EightPuzzleWPF
                         if (pop.path[pop.path.Count - 1] == reverse[i])
                             continue;
                     }
-                    if (pop.board.IsMovable(keys[i]) == true)
+                    if (Board.IsMovable(pop.board, keys[i]) == true)
                     {
                         BoardNode moved = pop.Copy();
-                        moved.board.MoveTileOnly(keys[i]);
+                        Board.MoveTileOnly(moved.board, keys[i]);
                         moved.path.Add(keys[i]);
-                        moved.heur = moved.path.Count + moved.board.CheckWrongTiles();
+                        moved.heur = moved.path.Count + Board.CheckWrongTiles(moved.board);
                         Enqueue(moved);
                     }
                 }

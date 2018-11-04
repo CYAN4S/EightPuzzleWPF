@@ -141,17 +141,17 @@ namespace EightPuzzleWPF
             var tag = (int)((Button)sender).Tag;
             //buttons[0][0].Content = tag.ToString();
             boardGame.MoveTileWithMouse(tag);
-            if (boardGame.IsSolved() && stopwatch.IsRunning)
-            {
-                stopwatch.Stop();
-            }
+            //if (boardGame.IsSolved() && stopwatch.IsRunning)
+            //{
+            //    stopwatch.Stop();
+            //}
             ShowBoard();
             
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (boardGame.IsSolved())
+            if (Board.IsSolved(boardGame))
             {
                 for (int i = 0; i < 250; i++)
                 {
@@ -191,6 +191,15 @@ namespace EightPuzzleWPF
             return DateTime.Now;
 
         }
-        
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

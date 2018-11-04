@@ -28,27 +28,17 @@ namespace EightPuzzleWPF
                     Status[i].Add(num++);
                 }
             }
-
             Status[HoleRow][HoleCol] = 0;
         }
 
-        public int CheckWrongTiles()
+        public static int CheckWrongTiles(Board board)
         {
             int num = 0, wrong = -1; // 구멍은 제외합니다.
-            foreach (var i in Status)
+            foreach (var i in board.Status)
             {
                 foreach (int j in i)
                 {
                     num++;
-                    //if (j == 0)
-                    //{
-                    //    continue;
-                    //}
-
-                    //else if (j != num)
-                    //{
-                    //    wrong++;
-                    //}
                     if (j != num)
                         wrong++;
                 }
@@ -56,10 +46,10 @@ namespace EightPuzzleWPF
             return wrong;
         }
 
-        public bool IsSolved()
+        public static bool IsSolved(Board board)
         {
             int num = 0;
-            foreach (var i in Status)
+            foreach (var i in board.Status)
             {
                 foreach (int j in i)
                 {
@@ -73,60 +63,61 @@ namespace EightPuzzleWPF
             return true;
         }
 
-        public bool IsMovable(Key dir)
+        public static bool IsMovable(Board board, Key dir)
         {
             switch (dir)
             {
                 case Key.Up:
-                    if (HoleRow < Status.Count - 1)
+                    if (board.HoleRow < board.Status.Count - 1)
                         return true;
                     return false;
 
                 case Key.Down:
-                    if (HoleRow > 0)
+                    if (board.HoleRow > 0)
                         return true;
                     return false;
 
                 case Key.Left:
-                    if (HoleCol < Status[0].Count - 1)
+                    if (board.HoleCol < board.Status[0].Count - 1)
                         return true;
                     return false;
 
                 case Key.Right:
-                    if (HoleCol > 0)
+                    if (board.HoleCol > 0)
                         return true;
                     return false;
 
-                default: return false;
+                default:
+                    return false;
             }
         }
 
-        public void MoveTileOnly(Key dir)
+        public static void MoveTileOnly(Board board, Key dir)
         {
             switch (dir)
             {
                 case Key.Up:
-                    Status[HoleRow][HoleCol] = Status[HoleRow + 1][HoleCol];
-                    Status[HoleRow + 1][HoleCol] = 0;
-                    HoleRow++;
+                    board.Status[board.HoleRow][board.HoleCol] = board.Status[board.HoleRow + 1][board.HoleCol];
+                    board.Status[board.HoleRow + 1][board.HoleCol] = 0;
+                    board.HoleRow++;
                     break;
 
                 case Key.Down:
-                    Status[HoleRow][HoleCol] = Status[HoleRow - 1][HoleCol];
-                    Status[HoleRow - 1][HoleCol] = 0;
-                    HoleRow--;
+                    board.Status[board.HoleRow][board.HoleCol] = board.Status[board.HoleRow - 1][board.HoleCol];
+                    board.Status[board.HoleRow - 1][board.HoleCol] = 0;
+                    board.HoleRow--;
                     break;
 
                 case Key.Left:
-                    Status[HoleRow][HoleCol] = Status[HoleRow][HoleCol + 1];
-                    Status[HoleRow][HoleCol + 1] = 0;
-                    HoleCol++;
+                    board.Status[board.HoleRow][board.HoleCol] = board.Status[board.HoleRow][board.HoleCol + 1];
+                    board.Status[board.HoleRow][board.HoleCol + 1] = 0;
+                    board.HoleCol++;
                     break;
 
                 case Key.Right:
-                    Status[HoleRow][HoleCol] = Status[HoleRow][HoleCol - 1];
-                    Status[HoleRow][HoleCol - 1] = 0;
-                    HoleCol--;
+                    board.Status[board.HoleRow][board.HoleCol] = board.Status[board.HoleRow][board.HoleCol - 1];
+                    board.Status[board.HoleRow][board.HoleCol - 1] = 0;
+                    board.HoleCol--;
                     break;
 
                 default:
@@ -134,19 +125,19 @@ namespace EightPuzzleWPF
             }
         }
 
-        public Board DeepCopy()
+        public static Board DeepCopy(Board board)
         {
-            Board newBoard = new Board(Status.Count, Status[0].Count)
+            Board newBoard = new Board(board.Status.Count, board.Status[0].Count)
             {
-                HoleRow = HoleRow,
-                HoleCol = HoleCol
+                HoleRow = board.HoleRow,
+                HoleCol = board.HoleCol
             };
 
-            for (int i = 0; i < Status.Count; i++)
+            for (int i = 0; i < board.Status.Count; i++)
             {
-                for (int j = 0; j < Status[0].Count; j++)
+                for (int j = 0; j < board.Status[0].Count; j++)
                 {
-                    newBoard.Status[i][j] = Status[i][j];
+                    newBoard.Status[i][j] = board.Status[i][j];
                 }
             }
             return newBoard;

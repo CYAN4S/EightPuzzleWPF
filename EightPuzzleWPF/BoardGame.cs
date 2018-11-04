@@ -147,24 +147,6 @@ namespace EightPuzzleWPF
             BoardNode answer = pq.Find(this);
             return answer.path;
         }
-
-        // 동적 할당을 해줍니다.
-        public new BoardGame DeepCopy()
-        {
-            BoardGame newBoardGame = new BoardGame(Status.Count, Status[0].Count)
-            {
-                HoleRow = HoleRow,
-                HoleCol = HoleCol
-            };
-            for (int i = 0; i < Status.Count; i++)
-            {
-                for (int j = 0; j < Status[0].Count; j++)
-                {
-                    newBoardGame.Status[i][j] = Status[i][j];
-                }
-            }
-            return newBoardGame;
-        }
     }
 
 
