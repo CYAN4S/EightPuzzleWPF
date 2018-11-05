@@ -46,6 +46,7 @@ namespace EightPuzzleWPF
                         Status[HoleRow][HoleCol] = Status[HoleRow + 1][HoleCol];
                         Status[HoleRow + 1][HoleCol] = 0;
                         HoleRow++;
+                        MainWindow.movedTime++;
                         return true;
                     }
                     else
@@ -57,6 +58,7 @@ namespace EightPuzzleWPF
                         Status[HoleRow][HoleCol] = Status[HoleRow - 1][HoleCol];
                         Status[HoleRow - 1][HoleCol] = 0;
                         HoleRow--;
+                        MainWindow.movedTime++;
                         return true;
                     }
                     else
@@ -68,6 +70,7 @@ namespace EightPuzzleWPF
                         Status[HoleRow][HoleCol] = Status[HoleRow][HoleCol + 1];
                         Status[HoleRow][HoleCol + 1] = 0;
                         HoleCol++;
+                        MainWindow.movedTime++;
                         return true;
                     }
                     else
@@ -79,6 +82,7 @@ namespace EightPuzzleWPF
                         Status[HoleRow][HoleCol] = Status[HoleRow][HoleCol - 1];
                         Status[HoleRow][HoleCol - 1] = 0;
                         HoleCol--;
+                        MainWindow.movedTime++;
                         return true;
                     }
                     else

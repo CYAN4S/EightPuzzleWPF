@@ -24,10 +24,13 @@ namespace EightPuzzleWPF
     {
         BoardGame boardGame;
         List<List<Button>> buttons;
+
         Stopwatch stopwatch  = new Stopwatch();
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
         string minsec = string.Empty;
+        string milli = string.Empty;
 
+        public static int movedTime = 0;
 
         public MainWindow()
         {
@@ -38,7 +41,7 @@ namespace EightPuzzleWPF
             // ShowBoard(boardGame);
             ResizeBoard(3, 3);
 
-            dispatcherTimer.Tick += DispatcherTimer_Tick;
+            dispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
         }
 
@@ -48,9 +51,12 @@ namespace EightPuzzleWPF
             {
                 TimeSpan timeSpan = stopwatch.Elapsed;
                 minsec = String.Format("{0:00}:{1:00}", timeSpan.Minutes, timeSpan.Seconds);
-
+                milli = String.Format("{0:000}", timeSpan.Milliseconds);
+                MinuteSecondText.Document.Blocks.Clear();
+                MinuteSecondText.Document.Blocks.Add(new Paragraph(new Run(minsec)));
+                MillisecondText.Document.Blocks.Clear();
+                MillisecondText.Document.Blocks.Add(new Paragraph(new Run(milli)));
             }
-            throw new NotImplementedException();
         }
 
         private void ResizeBoard(int r, int c)
@@ -62,17 +68,7 @@ namespace EightPuzzleWPF
             BoardSpace.ColumnDefinitions.Clear();
             InitBoard();
         }
-
-        //void dt_Tick(object sender, EventArgs e)
-        //{
-        //    if (stopwatch.IsRunning)
-        //    {
-        //        TimeSpan ts = sw.Elapsed;
-        //        currentTime = String.Format("{0:00}:{1:00}:{2:00}",
-        //        ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
-        //        clocktxt.Text = currentTime;
-        //    }
-        //}
+        
 
         // 처음 생성, 판 크기 변경 시
         private void InitBoard()
@@ -133,7 +129,12 @@ namespace EightPuzzleWPF
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (boardGame.MoveTile(e.Key))
+            {
                 ShowBoard();
+                MovedTimeText.Document.Blocks.Clear();
+                MovedTimeText.Document.Blocks.Add(new Paragraph(new Run(Convert.ToString(movedTime))));
+            }
+                
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -141,12 +142,14 @@ namespace EightPuzzleWPF
             var tag = (int)((Button)sender).Tag;
             //buttons[0][0].Content = tag.ToString();
             boardGame.MoveTileWithMouse(tag);
-            //if (boardGame.IsSolved() && stopwatch.IsRunning)
-            //{
-            //    stopwatch.Stop();
-            //}
+            if (Board.IsSolved(boardGame) && stopwatch.IsRunning)
+            {
+                stopwatch.Stop();
+            }
             ShowBoard();
-            
+            MovedTimeText.Document.Blocks.Clear();
+            MovedTimeText.Document.Blocks.Add(new Paragraph(new Run(Convert.ToString(movedTime))));
+
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -159,8 +162,12 @@ namespace EightPuzzleWPF
                     ShowBoard();
                     Delay(3);
                 }
-
+                movedTime = 0;
+                MovedTimeText.Document.Blocks.Clear();
+                MovedTimeText.Document.Blocks.Add(new Paragraph(new Run(Convert.ToString(movedTime))));
+                stopwatch.Reset();
                 stopwatch.Start();
+                dispatcherTimer.Start();
             }
             else
             {
@@ -170,11 +177,14 @@ namespace EightPuzzleWPF
                 {
                     boardGame.MoveTile(i);
                     ShowBoard();
+                    movedTime++;
+                    MovedTimeText.Document.Blocks.Clear();
+                    MovedTimeText.Document.Blocks.Add(new Paragraph(new Run(Convert.ToString(movedTime))));
                     Delay(100);
                 }
+                stopwatch.Stop();
                 ShowBoard();
             }
-            
         }
 
         private static DateTime Delay(int MS)
@@ -199,7 +209,12 @@ namespace EightPuzzleWPF
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-
+            boardGame.ResetTiles();
+            stopwatch.Stop();
+            movedTime = 0;
+            MovedTimeText.Document.Blocks.Clear();
+            MovedTimeText.Document.Blocks.Add(new Paragraph(new Run(Convert.ToString(movedTime))));
+            ShowBoard();
         }
     }
 }
