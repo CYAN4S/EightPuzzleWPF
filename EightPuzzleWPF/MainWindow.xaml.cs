@@ -38,8 +38,8 @@ namespace EightPuzzleWPF
 
             boardGame = new BoardGame(3, 3);
             InitBoard();
-            // ShowBoard(boardGame);
-            ResizeBoard(3, 3);
+            ShowBoard();
+            // ResizeBoard(3, 3);
 
             dispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
@@ -199,12 +199,14 @@ namespace EightPuzzleWPF
                 ThisMoment = DateTime.Now;
             }
             return DateTime.Now;
-
         }
-
+        
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-
+            if (MenuGrid.Visibility == Visibility.Hidden)
+                MenuGrid.Visibility = Visibility.Visible;
+            else
+                MenuGrid.Visibility = Visibility.Hidden;
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
@@ -215,6 +217,72 @@ namespace EightPuzzleWPF
             MovedTimeText.Document.Blocks.Clear();
             MovedTimeText.Document.Blocks.Add(new Paragraph(new Run(Convert.ToString(movedTime))));
             ShowBoard();
+        }
+
+        private void ResizeButton(object sender, RoutedEventArgs e)
+        {
+            RowCombo.SelectedIndex = 1;
+            ColCombo.SelectedIndex = 1;
+            MenuGrid.Visibility = Visibility.Hidden;
+            BoardSpace.Visibility = Visibility.Hidden;
+            ResizeGrid.Visibility = Visibility.Visible;
+        }
+
+        private void ShuffleButton(object sender, RoutedEventArgs e)
+        {
+            MenuGrid.Visibility = Visibility.Hidden;
+            for (int i = 0; i < 250; i++)
+            {
+                boardGame.MoveOnceRandom();
+                ShowBoard();
+                Delay(3);
+            }
+            movedTime = 0;
+            MovedTimeText.Document.Blocks.Clear();
+            MovedTimeText.Document.Blocks.Add(new Paragraph(new Run(Convert.ToString(movedTime))));
+            stopwatch.Reset();
+            stopwatch.Start();
+            dispatcherTimer.Start();
+        }
+        private void ResetButton(object sender, RoutedEventArgs e)
+        {
+            MenuGrid.Visibility = Visibility.Hidden;
+            boardGame.ResetTiles();
+            stopwatch.Stop();
+            movedTime = 0;
+            MovedTimeText.Document.Blocks.Clear();
+            MovedTimeText.Document.Blocks.Add(new Paragraph(new Run(Convert.ToString(movedTime))));
+            ShowBoard();
+        }
+        private void SolveButton(object sender, RoutedEventArgs e)
+        {
+            MenuGrid.Visibility = Visibility.Hidden;
+            List<Key> paths = boardGame.Solve();
+            foreach (var i in paths)
+            {
+                boardGame.MoveTile(i);
+                ShowBoard();
+                movedTime++;
+                MovedTimeText.Document.Blocks.Clear();
+                MovedTimeText.Document.Blocks.Add(new Paragraph(new Run(Convert.ToString(movedTime))));
+                Delay(100);
+            }
+            stopwatch.Stop();
+            ShowBoard();
+        }
+
+        private void ResizeCancel(object sender, RoutedEventArgs e)
+        {
+            ResizeGrid.Visibility = Visibility.Hidden;
+            BoardSpace.Visibility = Visibility.Visible;
+        }
+
+        private void ResizeOK(object sender, RoutedEventArgs e)
+        {
+            ResizeBoard(RowCombo.SelectedIndex + 2, ColCombo.SelectedIndex + 2);
+            ResizeGrid.Visibility = Visibility.Hidden;
+            BoardSpace.Visibility = Visibility.Visible;
+
         }
     }
 }
