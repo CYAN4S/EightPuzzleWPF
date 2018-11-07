@@ -92,7 +92,7 @@ namespace EightPuzzleWPF
                     {
                         Content = boardGame.Status[i][j].ToString(),
                         FontSize = 40,
-                        FontFamily = new FontFamily("Roboto Mono Light"),
+                        FontFamily = new FontFamily(new Uri("pack://application:,,,/"), "/EightPuzzleWPF;component/Fonts/#Roboto Mono Light"),
                         Foreground = Brushes.Gray,
                         Background = Brushes.White,
                         BorderThickness = new Thickness(0),

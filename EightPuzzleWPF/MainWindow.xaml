@@ -17,7 +17,7 @@
             <RowDefinition Height="76*"/>
             <RowDefinition Height="112*"/>
         </Grid.RowDefinitions>
-        <Label Margin="24,60,0,0" VerticalAlignment="Top" FontFamily="Montserrat" FontSize="36" FontWeight="Bold" Foreground="Gray" HorizontalAlignment="Left" Height="56" Width="312" Grid.ColumnSpan="2">
+        <Label Margin="24,60,0,0" VerticalAlignment="Top" FontFamily="/EightPuzzleWPF;component/Fonts/#Montserrat" FontSize="36" FontWeight="Bold" Foreground="Gray" HorizontalAlignment="Left" Height="56" Width="312" Grid.ColumnSpan="2">
             EIGHT PUZZLE
         </Label>
 
@@ -26,7 +26,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Label Background="#FFF7F7F7" Foreground="Gray" FontFamily="Noto Sans CJK KR Bold" FontSize="20" Grid.ColumnSpan="2" Content=" 크기 조정"/>
+            <Label Background="#FFF7F7F7" Foreground="Gray" FontFamily="/EightPuzzleWPF;component/Fonts/#Noto Sans CJK KR Bold" FontSize="20" Grid.ColumnSpan="2" Content=" 크기 조정"/>
             <ComboBox Margin="10,40,10,50" Name="RowCombo">
                 <ComboBoxItem Content="2"/>
                 <ComboBoxItem Content="3"/>
@@ -39,8 +39,8 @@
                 <ComboBoxItem Content="4"/>
                 <ComboBoxItem Content="5"/>
             </ComboBox>
-            <Button Content="확인" Margin="0,0,10,5" Grid.Column="1" HorizontalAlignment="Right" Width="50" Height="34" VerticalAlignment="Bottom" Background="{x:Null}" Click="ResizeOK" Foreground="Gray" BorderBrush="{x:Null}" FontFamily="Noto Sans CJK KR Bold" FontSize="20"/>
-            <Button Content="취소" Margin="0,0,65,5" Grid.Column="1" HorizontalAlignment="Right" Width="50" Height="34" VerticalAlignment="Bottom" Background="{x:Null}" Click="ResizeCancel" Foreground="Gray" BorderBrush="{x:Null}" FontFamily="Noto Sans CJK KR Bold" FontSize="20"/>
+            <Button Content="확인" Margin="0,0,10,5" Grid.Column="1" HorizontalAlignment="Right" Width="50" Height="34" VerticalAlignment="Bottom" Background="{x:Null}" Click="ResizeOK" Foreground="Gray" BorderBrush="{x:Null}" FontFamily="/EightPuzzleWPF;component/Fonts/#Noto Sans CJK KR Bold" FontSize="20"/>
+            <Button Content="취소" Margin="0,0,65,5" Grid.Column="1" HorizontalAlignment="Right" Width="50" Height="34" VerticalAlignment="Bottom" Background="{x:Null}" Click="ResizeCancel" Foreground="Gray" BorderBrush="{x:Null}" FontFamily="/EightPuzzleWPF;component/Fonts/#Noto Sans CJK KR Bold" FontSize="20"/>
         </Grid>
 
         <Grid Margin="24,116,24,24" Grid.ColumnSpan="2" Name="BoardSpace">
@@ -51,21 +51,21 @@
         </Grid>
 
         <Rectangle Fill="White" Margin="24,0,10,0" Grid.Row="1" Height="10" VerticalAlignment="Top"/>
-        <RichTextBox Margin="24,10,10,0" Grid.Row="1" BorderBrush="{x:Null}" Name="RichTextLeft" Height="20" VerticalAlignment="Top" BorderThickness="0" IsReadOnly="True" Foreground="Gray">
+        <RichTextBox Margin="24,10,10,0" Grid.Row="1" BorderBrush="{x:Null}" Name="RichTextLeft" Height="20" VerticalAlignment="Top" BorderThickness="0" IsReadOnly="True" Foreground="Gray" FontFamily="/EightPuzzleWPF;component/Fonts/#Roboto">
             <FlowDocument>
                 <Paragraph>
-                    <Run FontWeight="Bold" FontSize="16" FontFamily="Roboto" Text="TIMER"/>
+                    <Run FontWeight="Bold" FontSize="16" Text="TIMER"/>
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <RichTextBox Margin="24,30,10,0" Grid.Row="1" BorderBrush="{x:Null}" x:Name="MinuteSecondText" FontFamily="Roboto Mono Light" FontSize="30" BorderThickness="0" IsReadOnly="True" Foreground="Gray">
+        <RichTextBox Margin="24,30,10,0" Grid.Row="1" BorderBrush="{x:Null}" x:Name="MinuteSecondText" FontFamily="/EightPuzzleWPF;component/Fonts/#Roboto Mono Light" FontSize="30" BorderThickness="0" IsReadOnly="True" Foreground="Gray">
             <FlowDocument>
                 <Paragraph>
                     <Run Text="00:00"/>
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <RichTextBox Margin="116,41,10,0" Grid.Row="1" BorderBrush="{x:Null}" x:Name="MillisecondText" FontFamily="Roboto Mono" FontSize="20" BorderThickness="0" Background="{x:Null}" IsReadOnly="True" Foreground="Gray">
+        <RichTextBox Margin="116,41,10,0" Grid.Row="1" BorderBrush="{x:Null}" x:Name="MillisecondText" FontFamily="/EightPuzzleWPF;component/Fonts/#Roboto Mono" FontSize="20" BorderThickness="0" Background="{x:Null}" IsReadOnly="True" Foreground="Gray">
             <FlowDocument>
                 <Paragraph>
                     <Run Text="000"/>
@@ -74,14 +74,14 @@
         </RichTextBox>
 
         <Rectangle Fill="White" Margin="10,0,24,0" Grid.Row="1" Height="10" VerticalAlignment="Top" Grid.Column="1"/>
-        <RichTextBox Margin="10,10,24,0" Grid.Row="1" BorderBrush="{x:Null}" x:Name="RichTextLeft_Copy1" Height="20" VerticalAlignment="Top" BorderThickness="0" Grid.Column="1" IsReadOnly="True" Foreground="Gray">
+        <RichTextBox Margin="10,10,24,0" Grid.Row="1" BorderBrush="{x:Null}" x:Name="RichTextLeft_Copy1" Height="20" VerticalAlignment="Top" BorderThickness="0" Grid.Column="1" IsReadOnly="True" Foreground="Gray" FontFamily="/EightPuzzleWPF;component/Fonts/#Roboto">
             <FlowDocument>
                 <Paragraph>
-                    <Run Text="MOVED TIME" FontSize="16" FontWeight="Bold" FontFamily="Roboto"/>
+                    <Run Text="MOVED TIME" FontSize="16" FontWeight="Bold"/>
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <RichTextBox Margin="10,30,24,0" Grid.Row="1" BorderBrush="{x:Null}" x:Name="MovedTimeText" FontFamily="Roboto Mono Medium" FontSize="30" BorderThickness="0" Grid.Column="1" IsReadOnly="True" Foreground="Gray">
+        <RichTextBox Margin="10,30,24,0" Grid.Row="1" BorderBrush="{x:Null}" x:Name="MovedTimeText" FontFamily="/EightPuzzleWPF;component/Fonts/#Roboto Mono Medium" FontSize="30" BorderThickness="0" Grid.Column="1" IsReadOnly="True" Foreground="Gray">
             <FlowDocument>
                 <Paragraph>
                     <Run Text="0"/>
@@ -147,10 +147,10 @@
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
-                <Button Content="  크기 조정  " BorderBrush="{x:Null}" Background="#FFF7F7F7" FontFamily="Noto Sans CJK KR Bold" Click="ResizeButton" FontSize="20" HorizontalContentAlignment="Left" Foreground="Gray" BorderThickness="0"/>
-                <Button Content="  섞기       " BorderBrush="{x:Null}" Background="#FFF7F7F7" FontFamily="Noto Sans CJK KR Bold" Click="ShuffleButton" FontSize="20" HorizontalContentAlignment="Left" Foreground="Gray" BorderThickness="0" Grid.Row="1"/>
-                <Button Content="  초기화     " BorderBrush="{x:Null}" Background="#FFF7F7F7" FontFamily="Noto Sans CJK KR Bold" Click="ResetButton" FontSize="20" HorizontalContentAlignment="Left" Foreground="Gray" BorderThickness="0" Grid.Row="2"/>
-                <Button Content="  자동 맞추기" BorderBrush="{x:Null}" Background="#FFF7F7F7" FontFamily="Noto Sans CJK KR Bold" Click="SolveButton" FontSize="20" HorizontalContentAlignment="Left" Foreground="Gray" BorderThickness="0" Grid.Row="3"/>
+                <Button Content="  크기 조정  " BorderBrush="{x:Null}" Background="#FFF7F7F7" FontFamily="/EightPuzzleWPF;component/Fonts/#Noto Sans CJK KR Bold" Click="ResizeButton" FontSize="20" HorizontalContentAlignment="Left" Foreground="Gray" BorderThickness="0"/>
+                <Button Content="  섞기       " BorderBrush="{x:Null}" Background="#FFF7F7F7" FontFamily="/EightPuzzleWPF;component/Fonts/#Noto Sans CJK KR Bold" Click="ShuffleButton" FontSize="20" HorizontalContentAlignment="Left" Foreground="Gray" BorderThickness="0" Grid.Row="1"/>
+                <Button Content="  초기화     " BorderBrush="{x:Null}" Background="#FFF7F7F7" FontFamily="/EightPuzzleWPF;component/Fonts/#Noto Sans CJK KR Bold" Click="ResetButton" FontSize="20" HorizontalContentAlignment="Left" Foreground="Gray" BorderThickness="0" Grid.Row="2"/>
+                <Button Content="  자동 맞추기" BorderBrush="{x:Null}" Background="#FFF7F7F7" FontFamily="/EightPuzzleWPF;component/Fonts/#Noto Sans CJK KR Bold" Click="SolveButton" FontSize="20" HorizontalContentAlignment="Left" Foreground="Gray" BorderThickness="0" Grid.Row="3"/>
             </Grid>
         </Grid>
 
