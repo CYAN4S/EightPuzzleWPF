@@ -115,10 +115,16 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Montserrat-Bold.otf" />
+    <Resource Include="NotoSansCJKkr-Bold.otf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Roboto-Bold.ttf" />
+    <Resource Include="RobotoMono-Light.ttf" />
+    <Resource Include="RobotoMono-Medium.ttf" />
+    <Resource Include="RobotoMono-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
