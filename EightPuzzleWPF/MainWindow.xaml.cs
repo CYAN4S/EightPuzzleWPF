@@ -177,7 +177,7 @@ namespace EightPuzzleWPF
                 {
                     boardGame.MoveTile(i);
                     ShowBoard();
-                    movedTime++;
+                    // movedTime++;
                     MovedTimeText.Document.Blocks.Clear();
                     MovedTimeText.Document.Blocks.Add(new Paragraph(new Run(Convert.ToString(movedTime))));
                     Delay(100);
@@ -282,7 +282,6 @@ namespace EightPuzzleWPF
             ResizeBoard(RowCombo.SelectedIndex + 2, ColCombo.SelectedIndex + 2);
             ResizeGrid.Visibility = Visibility.Hidden;
             BoardSpace.Visibility = Visibility.Visible;
-
         }
     }
 }

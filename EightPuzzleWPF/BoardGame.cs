@@ -152,6 +152,5 @@ namespace EightPuzzleWPF
             return answer.path;
         }
     }
-
-
+    
 }

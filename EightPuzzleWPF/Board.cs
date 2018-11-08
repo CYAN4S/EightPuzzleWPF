@@ -142,9 +142,5 @@ namespace EightPuzzleWPF
             }
             return newBoard;
         }
-
-
     }
-
-
 }

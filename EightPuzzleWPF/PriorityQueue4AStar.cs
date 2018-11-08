@@ -21,13 +21,13 @@ namespace EightPuzzleWPF
         }
 
         // 동적 할당을 해줍니다.
-        public BoardNode Copy()
+        public static BoardNode Copy(BoardNode bn)
         {
             BoardNode result = new BoardNode
             {
-                board = Board.DeepCopy(board),
-                path = new List<Key>(path),
-                heur = heur
+                board = Board.DeepCopy(bn.board),
+                path = new List<Key>(bn.path),
+                heur = bn.heur
             };
             return result;
         }
@@ -71,7 +71,7 @@ namespace EightPuzzleWPF
             if (size < 2)
                 return new BoardNode(null, null, -1);
 
-            tmp = Tree[1].Copy();
+            tmp = BoardNode.Copy(Tree[1]);
 
             if (size == 2)
             {
@@ -143,7 +143,7 @@ namespace EightPuzzleWPF
                 BoardNode pop = Dequeue();
                 if (Board.IsSolved(pop.board))
                 {
-                    answer = pop.Copy();
+                    answer = BoardNode.Copy(pop);
                     return answer;
                 }
 
@@ -156,7 +156,7 @@ namespace EightPuzzleWPF
                     }
                     if (Board.IsMovable(pop.board, keys[i]) == true)
                     {
-                        BoardNode moved = pop.Copy();
+                        BoardNode moved = BoardNode.Copy(pop);
                         Board.MoveTileOnly(moved.board, keys[i]);
                         moved.path.Add(keys[i]);
                         moved.heur = moved.path.Count + Board.CheckWrongTiles(moved.board);

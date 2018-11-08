@@ -27,13 +27,13 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Label Background="#FFF7F7F7" Foreground="Gray" FontFamily="/EightPuzzleWPF;component/Fonts/#Noto Sans CJK KR Bold" FontSize="20" Grid.ColumnSpan="2" Content=" 크기 조정"/>
-            <ComboBox Margin="10,40,10,50" Name="RowCombo">
+            <ComboBox Margin="10,40,10,50" Name="RowCombo" FontFamily="/EightPuzzleWPF;component/Fonts/#Roboto Mono Medium">
                 <ComboBoxItem Content="2"/>
                 <ComboBoxItem Content="3"/>
                 <ComboBoxItem Content="4"/>
                 <ComboBoxItem Content="5"/>
             </ComboBox>
-            <ComboBox Margin="10,40,10,50" Grid.Column="1" Name="ColCombo">
+            <ComboBox Margin="10,40,10,50" Grid.Column="1" Name="ColCombo" FontFamily="/EightPuzzleWPF;component/Fonts/#Roboto Mono Medium">
                 <ComboBoxItem Content="2"/>
                 <ComboBoxItem Content="3"/>
                 <ComboBoxItem Content="4"/>
@@ -153,10 +153,5 @@
                 <Button Content="  자동 맞추기" BorderBrush="{x:Null}" Background="#FFF7F7F7" FontFamily="/EightPuzzleWPF;component/Fonts/#Noto Sans CJK KR Bold" Click="SolveButton" FontSize="20" HorizontalContentAlignment="Left" Foreground="Gray" BorderThickness="0" Grid.Row="3"/>
             </Grid>
         </Grid>
-
-        <!--여기-->
-
-
-
     </Grid>
 </Window>
