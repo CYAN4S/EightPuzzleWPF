@@ -39,7 +39,6 @@ namespace EightPuzzleWPF
             boardGame = new BoardGame(3, 3);
             InitBoard();
             ShowBoard();
-            // ResizeBoard(3, 3);
 
             dispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
@@ -68,9 +67,7 @@ namespace EightPuzzleWPF
             BoardSpace.ColumnDefinitions.Clear();
             InitBoard();
         }
-        
 
-        // 처음 생성, 판 크기 변경 시
         private void InitBoard()
         {
             int rowSize = boardGame.Status.Count;
@@ -98,7 +95,7 @@ namespace EightPuzzleWPF
                         BorderThickness = new Thickness(0),
                         Tag = i * colSize + j
                     };
-                    btn.Click += Button_Click;
+                    btn.Click += Button_Click_Tile;
 
                     BoardSpace.Children.Add(btn);
                     Grid.SetRow(btn, i);
@@ -134,25 +131,21 @@ namespace EightPuzzleWPF
                 MovedTimeText.Document.Blocks.Clear();
                 MovedTimeText.Document.Blocks.Add(new Paragraph(new Run(Convert.ToString(movedTime))));
             }
-                
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click_Tile(object sender, RoutedEventArgs e)
         {
             var tag = (int)((Button)sender).Tag;
-            //buttons[0][0].Content = tag.ToString();
             boardGame.MoveTileWithMouse(tag);
             if (Board.IsSolved(boardGame) && stopwatch.IsRunning)
-            {
                 stopwatch.Stop();
-            }
             ShowBoard();
             MovedTimeText.Document.Blocks.Clear();
             MovedTimeText.Document.Blocks.Add(new Paragraph(new Run(Convert.ToString(movedTime))));
 
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Click_Center(object sender, RoutedEventArgs e)
         {
             if (Board.IsSolved(boardGame))
             {
@@ -171,13 +164,11 @@ namespace EightPuzzleWPF
             }
             else
             {
-                // boardGame.ResetTiles();
                 List<Key> paths = boardGame.Solve();
                 foreach (var i in paths)
                 {
                     boardGame.MoveTile(i);
                     ShowBoard();
-                    // movedTime++;
                     MovedTimeText.Document.Blocks.Clear();
                     MovedTimeText.Document.Blocks.Add(new Paragraph(new Run(Convert.ToString(movedTime))));
                     Delay(100);
@@ -201,15 +192,12 @@ namespace EightPuzzleWPF
             return DateTime.Now;
         }
         
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Button_Click_Menu(object sender, RoutedEventArgs e)
         {
-            if (MenuGrid.Visibility == Visibility.Hidden)
-                MenuGrid.Visibility = Visibility.Visible;
-            else
-                MenuGrid.Visibility = Visibility.Hidden;
+            MenuGrid.Visibility = (MenuGrid.Visibility == Visibility.Hidden) ? Visibility.Visible : Visibility.Hidden;
         }
 
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void Button_Click_Reset(object sender, RoutedEventArgs e)
         {
             boardGame.ResetTiles();
             stopwatch.Stop();
@@ -244,6 +232,7 @@ namespace EightPuzzleWPF
             stopwatch.Start();
             dispatcherTimer.Start();
         }
+
         private void ResetButton(object sender, RoutedEventArgs e)
         {
             MenuGrid.Visibility = Visibility.Hidden;
@@ -254,6 +243,7 @@ namespace EightPuzzleWPF
             MovedTimeText.Document.Blocks.Add(new Paragraph(new Run(Convert.ToString(movedTime))));
             ShowBoard();
         }
+
         private void SolveButton(object sender, RoutedEventArgs e)
         {
             MenuGrid.Visibility = Visibility.Hidden;

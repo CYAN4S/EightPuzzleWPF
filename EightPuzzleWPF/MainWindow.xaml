@@ -98,7 +98,7 @@
             </Grid.ColumnDefinitions>
             <Rectangle Fill="#FF14A9A2" Height="58" VerticalAlignment="Bottom"/>
             <Rectangle Fill="#FF14A9A2" Height="58" VerticalAlignment="Bottom" Grid.Column="2"/>
-            <Button Margin="17,0,17,35" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Background="#FFFF9EAD" Foreground="{x:Null}" BorderBrush="#FFFF9EAD" Height="46" VerticalAlignment="Bottom" Width="46" Click="Button_Click_1">
+            <Button Margin="17,0,17,35" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Background="#FFFF9EAD" Foreground="{x:Null}" BorderBrush="#FFFF9EAD" Height="46" VerticalAlignment="Bottom" Width="46" Click="Button_Click_Center">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -126,14 +126,14 @@
                     <ImageBrush ImageSource="dock.png"/>
                 </Rectangle.Fill>
             </Rectangle>
-            <Button Grid.Column="2" VerticalAlignment="Bottom" Height="58" HorizontalAlignment="Right" Width="58" BorderBrush="{x:Null}" Click="Button_Click_2" Foreground="{x:Null}" Background="{x:Null}">
+            <Button Grid.Column="2" VerticalAlignment="Bottom" Height="58" HorizontalAlignment="Right" Width="58" BorderBrush="{x:Null}" Click="Button_Click_Menu" Foreground="{x:Null}" Background="{x:Null}">
                 <Rectangle Height="24" Width="6">
                     <Rectangle.Fill>
                         <ImageBrush ImageSource="slice1.png"/>
                     </Rectangle.Fill>
                 </Rectangle>
             </Button>
-            <Button Grid.Column="2" VerticalAlignment="Bottom" Height="58" HorizontalAlignment="Right" Width="58" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,58,0" Click="Button_Click_3" Background="{x:Null}">
+            <Button Grid.Column="2" VerticalAlignment="Bottom" Height="58" HorizontalAlignment="Right" Width="58" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,58,0" Click="Button_Click_Reset" Background="{x:Null}">
                 <Rectangle Height="10.6" Width="24">
                     <Rectangle.Fill>
                         <ImageBrush ImageSource="slice2.png"/>

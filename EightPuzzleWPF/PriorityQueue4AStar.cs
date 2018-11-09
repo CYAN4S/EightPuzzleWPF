@@ -55,9 +55,7 @@ namespace EightPuzzleWPF
             for (int i = Tree.Count() - 1; i > 1; i /= 2)
             {
                 if (Tree[i / 2].heur > Tree[i].heur)
-                {
                     Swap(Tree, i / 2, i);
-                }
                 else
                     return;
             }
@@ -89,33 +87,26 @@ namespace EightPuzzleWPF
             while (true)
             {
                 if (index * 2 + 1 > size)
-                {
                     return tmp;
-                }
+
                 else if (index * 2 + 2 <= size)
                 {
                     int smaller = (Tree[index * 2].heur > Tree[index * 2 + 1].heur) ? (index * 2 + 1) : (index * 2);
                     BoardNode smallerNode = Tree[smaller];
+
                     if (Tree[index].heur >= Tree[smaller].heur)
-                    {
                         Swap(Tree, index, smaller);
-                    }
                     else
-                    {
                         return tmp;
-                    }
                     index = smaller;
                 }
                 else // if (index * 2 + 1 == size)
                 {
                     if (Tree[index].heur >= Tree[index * 2].heur)
-                    {
                         Swap(Tree, index, index * 2);
-                    }
                     else
-                    {
                         return tmp;
-                    }
+
                     index *= 2;
                 }
             }
@@ -163,7 +154,6 @@ namespace EightPuzzleWPF
                         Enqueue(moved);
                     }
                 }
-                
             }
             return new BoardNode(null, null, -1);
         }

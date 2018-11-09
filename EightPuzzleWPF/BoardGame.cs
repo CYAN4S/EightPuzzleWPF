@@ -9,10 +9,7 @@ namespace EightPuzzleWPF
 {
     class BoardGame : Board
     {
-        public BoardGame(int row, int col) : base(row, col)
-        {
-
-        }
+        public BoardGame(int row, int col) : base(row, col) { }
 
         public void ResetTiles()
         {

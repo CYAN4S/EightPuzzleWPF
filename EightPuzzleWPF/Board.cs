@@ -24,9 +24,7 @@ namespace EightPuzzleWPF
             {
                 Status.Add(new List<int>());
                 for (int j = 0; j < col; j++)
-                {
                     Status[i].Add(num++);
-                }
             }
             Status[HoleRow][HoleCol] = 0;
         }
@@ -136,9 +134,7 @@ namespace EightPuzzleWPF
             for (int i = 0; i < board.Status.Count; i++)
             {
                 for (int j = 0; j < board.Status[0].Count; j++)
-                {
                     newBoard.Status[i][j] = board.Status[i][j];
-                }
             }
             return newBoard;
         }
