@@ -84,6 +84,7 @@
     </Compile>
     <Compile Include="Board.cs" />
     <Compile Include="BoardGame.cs" />
+    <Compile Include="HeapTree.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
